@@ -1,20 +1,15 @@
-def write_movie_info(astring,adict):
-    OpenFile = open(astring,"w")
-
-    for dic in adict:
-        AList = ""
-
-        for keys,values in dic.items():
-            keys = str(keys)
-            values = str(values)
-            keyitem = keys+": "
-            AList+=keyitem
-            AList+=values
-            AList = AList.replace("[","")
-            AList = AList.replace("]","")
-            AList = AList.replace("'","")
-            OpenFile.write(AList +"\n")
-            AList = ""
+def write_movie_info(string,a_dict):
+    filename = open(string, "w")
+    keys_list = sorted(a_dict.keys())
+    for movie in keys_list:
+        for (title,actors) in a_dict.items():
+            if movie == title:
+                actors.sort()
+                new_actors = str(actors)
+                new_actors = new_actors.strip("[]")
+                new_actors = new_actors.replace("'","")
+                filename.write(movie +": " + new_actors + "\n")
+    filename.close()
 #If your function works correctly, this will originally
 #print nothing -- however, it should write the same contents
 #as Sample.txt to Test.txt.
